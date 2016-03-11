@@ -39,14 +39,14 @@ def scrape_mp(sortname, url)
     name: noko.css('.pagetitle span').first.text,
     sortname: sortname, 
     image: noko.css('.ArticleText2 img/@src').text,
-    party: noko.css('td.Stranka').text.tidy,
     birth_date: dob_from(noko.css('.ArticleText2')),
     faction: noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text,
     faction_id: noko.xpath('//td[b[contains(.,"Deputy club:")]]//a/@href').text[/id=(\d+)/, 1],
+    party: noko.css('td.Stranka').text.tidy,
     constituency: noko.xpath('//td[b[contains(.,"Constituency:")]]/text()').text,
     start_date: noko.xpath('//td[b[contains(.,"Begin of parliamentary mandate:")]]/text()').text.split('/').reverse.join('-'),
     # TODO: Chamges, e.g. http://www.sabor.hr/Default.aspx?sec=5358
-    term: 7,
+    term: 8,
     source: url.to_s,
   }
   data[:image] = URI.join(url, data[:image]).to_s unless data[:image].to_s.empty?
@@ -54,8 +54,8 @@ def scrape_mp(sortname, url)
     data[:faction] = "Independent"
     warn "No faction: setting to #{data[:faction]}".red
   end
-  # puts data
-  ScraperWiki.save_sqlite([:id, :term], data)
+  puts data[:faction]
+  # ScraperWiki.save_sqlite([:id, :term], data)
 end
 
 scrape_list('http://www.sabor.hr/Default.aspx?sec=4608')
