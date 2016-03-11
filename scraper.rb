@@ -54,7 +54,7 @@ def scrape_mp(sortname, url)
     data[:faction] = "Independent"
     warn "No faction: setting to #{data[:faction]}".red
   end
-  puts data[:faction]
+  # puts data
   # ScraperWiki.save_sqlite([:id, :term], data)
 end
 
