@@ -55,7 +55,7 @@ def scrape_mp(sortname, url)
     warn "No faction: setting to #{data[:faction]}".red
   end
   # puts data
-  # ScraperWiki.save_sqlite([:id, :term], data)
+  ScraperWiki.save_sqlite([:id, :term], data)
 end
 
 scrape_list('http://www.sabor.hr/Default.aspx?sec=4608')
