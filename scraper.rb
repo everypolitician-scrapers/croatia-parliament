@@ -56,11 +56,16 @@ def scrape_mp(term, sortname, url)
     data[:faction] = "Independent"
     warn "No faction in #{data[:source]}: setting to #{data[:faction]}".red
   end
+  warn data
   ScraperWiki.save_sqlite([:id, :term], data)
 end
 
-scrape_list(8, 'http://www.sabor.hr/Default.aspx?sec=4608')
-scrape_list(7, 'http://www.sabor.hr/members-of-parliament')
+# scrape_list(8, 'http://www.sabor.hr/Default.aspx?sec=4608')
+scrape_list(8, 'http://www.sabor.hr/concluded-mandates') # left mid-way
+
+# scrape_list(7, 'http://www.sabor.hr/members-of-parliament')
+scrape_list(7, 'http://www.sabor.hr/0041') # left mid-way
+
 # scrape_list(6, 'http://www.sabor.hr/Default.aspx?sec=4897')
 # scrape_list(5, 'http://www.sabor.hr/Default.aspx?sec=2487')
 
