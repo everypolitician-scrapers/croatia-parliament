@@ -38,12 +38,6 @@ class List < Base
     end
   end
 
-  def save
-    members.each do |member|
-      ScraperWiki.save_sqlite([:id, :term], member.to_h)
-    end
-  end
-
   private
   attr_reader :term, :url
 end
@@ -93,7 +87,7 @@ class Member < Base
   end
 
   def faction
-    f = noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text || 'Independent'
+    f = noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text
     if f.to_s.empty?
       f = 'Independent'
       warn "No faction in #{source}: setting to #{f}".red
@@ -143,12 +137,12 @@ class Member < Base
   end
 end
 
-List.new(8, 'http://www.sabor.hr/Default.aspx?sec=4608').save
-List.new(8, 'http://www.sabor.hr/concluded-mandates').save # left mid-way
 
-List.new(7, 'http://www.sabor.hr/members-of-parliament').save
-List.new(7, 'http://www.sabor.hr/0041').save # left mid-way
+List.new(8, 'http://www.sabor.hr/Default.aspx?sec=4608')
+List.new(8, 'http://www.sabor.hr/concluded-mandates') # left mid-way
+List.new(7, 'http://www.sabor.hr/members-of-parliament')
+List.new(7, 'http://www.sabor.hr/0041') # left mid-way
 
-# List.new(6, 'http://www.sabor.hr/Default.aspx?sec=4897').members
-# List.new(5, 'http://www.sabor.hr/Default.aspx?sec=2487').members
+# List.new(6, 'http://www.sabor.hr/Default.aspx?sec=4897')
+# List.new(5, 'http://www.sabor.hr/Default.aspx?sec=2487')
 
