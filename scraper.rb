@@ -8,8 +8,7 @@ require 'pry'
 require 'open-uri/cached'
 OpenURI::Cache.cache_path = '.cache'
 
-class Base
-  private
+module NokoHelper
   def noko_for(url)
     @noko ||= Nokogiri::HTML(open(url).read)
   end
@@ -25,7 +24,9 @@ class String
   end
 end
 
-class List < Base
+class List
+  include NokoHelper
+
   def initialize(term, url)
     @term = term
     @url = url
@@ -42,7 +43,8 @@ class List < Base
   attr_reader :term, :url
 end
 
-class Member < Base
+class Member
+  include NokoHelper
 
   def initialize(term, sortname, url)
     @term = term
