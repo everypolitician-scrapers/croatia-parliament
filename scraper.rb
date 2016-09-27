@@ -8,7 +8,8 @@ require 'pry'
 require 'open-uri/cached'
 OpenURI::Cache.cache_path = '.cache'
 
-module NokoHelper
+class Base
+  private
   def noko_for(url)
     @noko ||= Nokogiri::HTML(open(url).read)
   end
@@ -20,7 +21,7 @@ class String
   end
 end
 
-class ListScraper
+class ListScraper < Base
   def initialize(term, url)
     @term = term
     @url = url
@@ -29,27 +30,35 @@ class ListScraper
   def members
     @members ||= noko_for(url).css('.liste2 .liste a').map do |a|
       link = URI.join url, a.attr('href')
-      MemberScraper.new(term, a.text, link).scrape_mp
+      MemberScraper.new(term, a.text, link)
+    end
+  end
+
+  def save
+    members.each do |member|
+      ScraperWiki.save_sqlite([:id, :term], member.data)
     end
   end
 
   private
   attr_reader :term, :url
-
-  include NokoHelper
 end
 
-class MemberScraper
+class MemberScraper < Base
+
+  attr_reader :data
+
   def initialize(term, sortname, url)
     @term = term
     @sortname = sortname
     @url = url
+    scrape_mp
   end
 
   def scrape_mp
     noko = noko_for(url)
 
-    data = {
+    @data = {
       id: url.to_s[/id=(\d+)$/, 1],
       # name: noko.css('.pagetitle span').first.text,
       name: noko.xpath('//title').text.split(' - ').last,
@@ -72,25 +81,22 @@ class MemberScraper
       data[:faction] = "Independent"
       warn "No faction in #{data[:source]}: setting to #{data[:faction]}".red
     end
-    ScraperWiki.save_sqlite([:id, :term], data)
   end
 
   private
 
   attr_reader :term, :sortname, :url
 
-  include NokoHelper
-
   def dob_from(node)
     Date.parse(node.text.tidy[/Born\s+(?:on)\s+(\d+\s+\w+\s+\d+)/, 1]).to_s rescue ''
   end
 end
 
-ListScraper.new(8, 'http://www.sabor.hr/Default.aspx?sec=4608').members
-ListScraper.new(8, 'http://www.sabor.hr/concluded-mandates').members # left mid-way
+ListScraper.new(8, 'http://www.sabor.hr/Default.aspx?sec=4608').save
+ListScraper.new(8, 'http://www.sabor.hr/concluded-mandates').save # left mid-way
 
-ListScraper.new(7, 'http://www.sabor.hr/members-of-parliament').members
-ListScraper.new(7, 'http://www.sabor.hr/0041').members # left mid-way
+ListScraper.new(7, 'http://www.sabor.hr/members-of-parliament').save
+ListScraper.new(7, 'http://www.sabor.hr/0041').save # left mid-way
 
 # ListScraper.new(6, 'http://www.sabor.hr/Default.aspx?sec=4897').members
 # ListScraper.new(5, 'http://www.sabor.hr/Default.aspx?sec=2487').members
