@@ -36,7 +36,7 @@ class ListScraper < Base
 
   def save
     members.each do |member|
-      ScraperWiki.save_sqlite([:id, :term], member.data)
+      ScraperWiki.save_sqlite([:id, :term], member.to_h)
     end
   end
 
@@ -46,19 +46,16 @@ end
 
 class MemberScraper < Base
 
-  attr_reader :data
-
   def initialize(term, sortname, url)
     @term = term
     @sortname = sortname
     @url = url
-    scrape_mp
   end
 
-  def scrape_mp
+  def to_h
     noko = noko_for(url)
 
-    @data = {
+    data = {
       id: url.to_s[/id=(\d+)$/, 1],
       # name: noko.css('.pagetitle span').first.text,
       name: noko.xpath('//title').text.split(' - ').last,
@@ -81,6 +78,8 @@ class MemberScraper < Base
       data[:faction] = "Independent"
       warn "No faction in #{data[:source]}: setting to #{data[:faction]}".red
     end
+
+    data
   end
 
   private
