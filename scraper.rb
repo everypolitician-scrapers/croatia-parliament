@@ -8,6 +8,12 @@ require 'pry'
 require 'open-uri/cached'
 OpenURI::Cache.cache_path = '.cache'
 
+module NokoHelper
+  def noko_for(url)
+    @noko ||= Nokogiri::HTML(open(url).read)
+  end
+end
+
 class String
   def tidy
     self.gsub(/[[:space:]]+/, ' ').strip
@@ -21,7 +27,7 @@ class ListScraper
   end
 
   def members
-    noko_for(url).css('.liste2 .liste a').map do |a|
+    @members ||= noko_for(url).css('.liste2 .liste a').map do |a|
       link = URI.join url, a.attr('href')
       MemberScraper.new(term, a.text, link).scrape_mp
     end
@@ -30,9 +36,7 @@ class ListScraper
   private
   attr_reader :term, :url
 
-  def noko_for(url)
-    Nokogiri::HTML(open(url).read)
-  end
+  include NokoHelper
 end
 
 class MemberScraper
@@ -74,6 +78,8 @@ class MemberScraper
   private
 
   attr_reader :term, :sortname, :url
+
+  include NokoHelper
 
   def dob_from(node)
     Date.parse(node.text.tidy[/Born\s+(?:on)\s+(\d+\s+\w+\s+\d+)/, 1]).to_s rescue ''
