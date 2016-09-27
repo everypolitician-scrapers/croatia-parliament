@@ -25,7 +25,7 @@ class String
   end
 end
 
-class ListScraper < Base
+class List < Base
   def initialize(term, url)
     @term = term
     @url = url
@@ -143,12 +143,12 @@ class Member < Base
   end
 end
 
-ListScraper.new(8, 'http://www.sabor.hr/Default.aspx?sec=4608').save
-ListScraper.new(8, 'http://www.sabor.hr/concluded-mandates').save # left mid-way
+List.new(8, 'http://www.sabor.hr/Default.aspx?sec=4608').save
+List.new(8, 'http://www.sabor.hr/concluded-mandates').save # left mid-way
 
-ListScraper.new(7, 'http://www.sabor.hr/members-of-parliament').save
-ListScraper.new(7, 'http://www.sabor.hr/0041').save # left mid-way
+List.new(7, 'http://www.sabor.hr/members-of-parliament').save
+List.new(7, 'http://www.sabor.hr/0041').save # left mid-way
 
-# ListScraper.new(6, 'http://www.sabor.hr/Default.aspx?sec=4897').members
-# ListScraper.new(5, 'http://www.sabor.hr/Default.aspx?sec=2487').members
+# List.new(6, 'http://www.sabor.hr/Default.aspx?sec=4897').members
+# List.new(5, 'http://www.sabor.hr/Default.aspx?sec=2487').members
 
