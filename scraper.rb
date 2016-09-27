@@ -57,33 +57,81 @@ class Member < Base
   end
 
   def to_h
-    noko = noko_for(url)
-
-    data = {
-      id: url.to_s[/id=(\d+)$/, 1],
-      # name: noko.css('.pagetitle span').first.text,
-      name: noko.xpath('//title').text.split(' - ').last,
+    {
+      id: id,
+      name: name,
       sortname: sortname,
-      image: noko.css('.ArticleText2 img/@src').text,
-      birth_date: dob_from(noko.css('.ArticleText2')),
-      faction: noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text,
-      faction_id: noko.xpath('//td[b[contains(.,"Deputy club:")]]//a/@href').text[/id=(\d+)/, 1],
-      party: noko.css('td.Stranka').text.tidy,
-      constituency: noko.xpath('//td[b[contains(.,"Constituency:")]]/text()').text,
-      start_date: noko.xpath('//td[b[contains(.,"Begin of parliamentary mandate:")]]/text()').text.split('/').reverse.join('-'),
-      end_date: noko.xpath('//td[b[contains(.,"End of parliamentary mandate:")]]/text()').text.split('/').reverse.join('-'),
-      # TODO: Chamges, e.g. http://www.sabor.hr/Default.aspx?sec=5358
+      image: image,
+      birth_date: birth_date,
+      faction: faction,
+      faction_id: faction_id,
+      party: party,
+      constituency: constituency,
+      start_date: start_date,
+      end_date: end_date,
       term: term,
-      source: url.to_s,
+      source: source,
+      image: image,
     }
-    data[:image] = URI.join(url, data[:image]).to_s unless data[:image].to_s.empty?
+  end
 
-    if data[:faction].to_s.empty?
-      data[:faction] = "Independent"
-      warn "No faction in #{data[:source]}: setting to #{data[:faction]}".red
+  def id
+    url.to_s[/id=(\d+)$/, 1]
+  end
+
+  def name
+    noko.xpath('//title').text.split(' - ').last
+  end
+
+  def image
+    img = noko.css('.ArticleText2 img/@src').text
+    URI.join(url, img).to_s unless img.to_s.empty?
+  end
+
+  def birth_date
+    dob_from(noko.css('.ArticleText2'))
+  end
+
+  def faction
+    f = noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text || 'Independent'
+    if f.to_s.empty?
+      f = 'Independent'
+      warn "No faction in #{source}: setting to #{f}".red
     end
+    f
+  end
 
-    data
+  def faction_id
+    noko.xpath('//td[b[contains(.,"Deputy club:")]]//a/@href')
+        .text[/id=(\d+)/, 1]
+  end
+
+  def party
+    noko.css('td.Stranka').text.tidy
+  end
+
+  def constituency
+    noko.xpath('//td[b[contains(.,"Constituency:")]]/text()').text
+  end
+
+  def start_date
+    noko.xpath('//td[b[contains(.,"Begin of parliamentary mandate:")]]/text()')
+        .text
+        .split('/')
+        .reverse
+        .join('-')
+  end
+
+  def end_date
+    noko.xpath('//td[b[contains(.,"End of parliamentary mandate:")]]/text()')
+        .text
+        .split('/')
+        .reverse
+        .join('-')
+  end
+
+  def source
+    url.to_s
   end
 
   private
