@@ -14,15 +14,24 @@ class String
   end
 end
 
-def noko_for(url)
-  Nokogiri::HTML(open(url).read)
-end
+class ListScraper
+  def initialize(term, url)
+    @term = term
+    @url = url
+  end
 
-def scrape_list(term, url)
-  noko = noko_for(url)
-  noko.css('.liste2 .liste a').each do |a|
-    link = URI.join url, a.attr('href')
-    MemberScraper.new(term, a.text, link).scrape_mp
+  def members
+    noko_for(url).css('.liste2 .liste a').map do |a|
+      link = URI.join url, a.attr('href')
+      MemberScraper.new(term, a.text, link).scrape_mp
+    end
+  end
+
+  private
+  attr_reader :term, :url
+
+  def noko_for(url)
+    Nokogiri::HTML(open(url).read)
   end
 end
 
@@ -71,12 +80,12 @@ class MemberScraper
   end
 end
 
-scrape_list(8, 'http://www.sabor.hr/Default.aspx?sec=4608')
-scrape_list(8, 'http://www.sabor.hr/concluded-mandates') # left mid-way
+ListScraper.new(8, 'http://www.sabor.hr/Default.aspx?sec=4608').members
+ListScraper.new(8, 'http://www.sabor.hr/concluded-mandates').members # left mid-way
 
-scrape_list(7, 'http://www.sabor.hr/members-of-parliament')
-scrape_list(7, 'http://www.sabor.hr/0041') # left mid-way
+ListScraper.new(7, 'http://www.sabor.hr/members-of-parliament').members
+ListScraper.new(7, 'http://www.sabor.hr/0041').members # left mid-way
 
-# scrape_list(6, 'http://www.sabor.hr/Default.aspx?sec=4897')
-# scrape_list(5, 'http://www.sabor.hr/Default.aspx?sec=2487')
+# ListScraper.new(6, 'http://www.sabor.hr/Default.aspx?sec=4897').members
+# ListScraper.new(5, 'http://www.sabor.hr/Default.aspx?sec=2487').members
 
