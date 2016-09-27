@@ -30,7 +30,7 @@ class ListScraper < Base
   def members
     @members ||= noko_for(url).css('.liste2 .liste a').map do |a|
       link = URI.join url, a.attr('href')
-      MemberScraper.new(term, a.text, link)
+      Member.new(term, a.text, link)
     end
   end
 
@@ -44,7 +44,7 @@ class ListScraper < Base
   attr_reader :term, :url
 end
 
-class MemberScraper < Base
+class Member < Base
 
   def initialize(term, sortname, url)
     @term = term
