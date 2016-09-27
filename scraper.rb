@@ -13,6 +13,10 @@ class Base
   def noko_for(url)
     @noko ||= Nokogiri::HTML(open(url).read)
   end
+
+  def noko
+    @noko ||= noko_for(url)
+  end
 end
 
 class String
