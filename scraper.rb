@@ -15,7 +15,7 @@ class Base
   end
 
   def noko
-    @noko ||= noko_for(url)
+    noko_for(url)
   end
 end
 
