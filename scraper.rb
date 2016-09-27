@@ -21,7 +21,7 @@ end
 
 class String
   def tidy
-    self.gsub(/[[:space:]]+/, ' ').strip
+    gsub(/[[:space:]]+/, ' ').strip
   end
 end
 
@@ -137,11 +137,16 @@ class Member < Base
   end
 end
 
+def save(list)
+  list.members.each do |member|
+    ScraperWiki.save_sqlite([:id, :term], member.to_h)
+  end
+end
 
-List.new(8, 'http://www.sabor.hr/Default.aspx?sec=4608')
-List.new(8, 'http://www.sabor.hr/concluded-mandates') # left mid-way
-List.new(7, 'http://www.sabor.hr/members-of-parliament')
-List.new(7, 'http://www.sabor.hr/0041') # left mid-way
+save( List.new(8, 'http://www.sabor.hr/Default.aspx?sec=4608') )
+save( List.new(8, 'http://www.sabor.hr/concluded-mandates') ) # left mid-way
+save( List.new(7, 'http://www.sabor.hr/members-of-parliament') )
+save( List.new(7, 'http://www.sabor.hr/0041') )# left mid-way
 
 # List.new(6, 'http://www.sabor.hr/Default.aspx?sec=4897')
 # List.new(5, 'http://www.sabor.hr/Default.aspx?sec=2487')
