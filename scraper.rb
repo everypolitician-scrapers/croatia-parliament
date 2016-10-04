@@ -89,12 +89,8 @@ class Member
   end
 
   def faction
-    f = noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text
-    if f.to_s.empty?
-      f = 'Independent'
-      warn "No faction in #{source}: setting to #{f}".red
-    end
-    f
+     warn "No faction in #{source}: setting to 'Independent'".red unless deputy_club
+     deputy_club || 'Independent'
   end
 
   def faction_id
@@ -133,6 +129,11 @@ class Member
   private
 
   attr_reader :term, :sortname, :url
+
+  def deputy_club
+    f = noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text
+    f unless f.to_s.empty?
+  end
 
   def dob_from(node)
     Date.parse(node.text.tidy[/Born\s+(?:on)\s+(\d+\s+\w+\s+\d+)/, 1]).to_s rescue ''
