@@ -28,7 +28,7 @@ end
 class List
   include NokoHelper
 
-  def initialize(term, url)
+  def initialize(term:, url:)
     @term = term
     @url = url
   end
@@ -145,11 +145,11 @@ def save(list)
   end
 end
 
-save( List.new(8, 'http://www.sabor.hr/Default.aspx?sec=4608') )
-save( List.new(8, 'http://www.sabor.hr/concluded-mandates') ) # left mid-way
-save( List.new(7, 'http://www.sabor.hr/members-of-parliament') )
-save( List.new(7, 'http://www.sabor.hr/0041') )# left mid-way
+save( List.new(term: 8, url: 'http://www.sabor.hr/Default.aspx?sec=4608') )
+save( List.new(term: 8, url: 'http://www.sabor.hr/concluded-mandates') ) # left mid-way
+save( List.new(term: 7, url: 'http://www.sabor.hr/members-of-parliament') )
+save( List.new(term: 7, url: 'http://www.sabor.hr/0041') )# left mid-way
 
-# List.new(6, 'http://www.sabor.hr/Default.aspx?sec=4897')
-# List.new(5, 'http://www.sabor.hr/Default.aspx?sec=2487')
+# List.new(term: 6, url: 'http://www.sabor.hr/Default.aspx?sec=4897')
+# List.new(term: 5, url: 'http://www.sabor.hr/Default.aspx?sec=2487')
 
