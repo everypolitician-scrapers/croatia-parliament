@@ -36,7 +36,7 @@ class List
   def members
     @members ||= noko_for(url).css('.liste2 .liste a').map do |a|
       link = URI.join url, a.attr('href')
-      Member.new(term, a.text, link)
+      Member.new(term: term, sortname: a.text, url: link)
     end
   end
 
@@ -47,7 +47,7 @@ end
 class Member
   include NokoHelper
 
-  def initialize(term, sortname, url)
+  def initialize(term:, sortname:, url:)
     @term = term
     @sortname = sortname
     @url = url
