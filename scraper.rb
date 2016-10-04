@@ -68,7 +68,6 @@ class Member
       end_date: end_date,
       term: term,
       source: source,
-      image: image,
     }
   end
 
