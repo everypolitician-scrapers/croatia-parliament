@@ -4,7 +4,7 @@
 
 source "https://rubygems.org"
 
-ruby "2.0.0"
+ruby "2.3.0"
 
 gem "scraperwiki", git: "https://github.com/openaustralia/scraperwiki-ruby.git", branch: "morph_defaults"
 gem "execjs"
@@ -14,3 +14,4 @@ gem "nokogiri"
 gem "open-uri-cached"
 gem "fuzzy_match"
 gem 'wikidata-client', '~> 0.0.7', require: 'wikidata'
+gem 'scraped_page_archive'
