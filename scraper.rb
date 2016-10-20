@@ -59,8 +59,11 @@ def scrape_mp(term, sortname, url)
   ScraperWiki.save_sqlite([:id, :term], data)
 end
 
-scrape_list(8, 'http://www.sabor.hr/Default.aspx?sec=4608')
-scrape_list(8, 'http://www.sabor.hr/concluded-mandates') # left mid-way
+scrape_list(9, 'http://www.sabor.hr/Default.aspx?sec=4608')
+scrape_list(9, 'http://www.sabor.hr/concluded-mandates') # left mid-way
+
+scrape_list(8, 'http://www.sabor.hr/members-of-parliament0001')
+scrape_list(8, 'http://www.sabor.hr/concluded-mandates0001') # left mid-way
 
 scrape_list(7, 'http://www.sabor.hr/members-of-parliament')
 scrape_list(7, 'http://www.sabor.hr/0041') # left mid-way
