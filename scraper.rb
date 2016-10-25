@@ -34,11 +34,11 @@ end
 def scrape_mp(term, sortname, url)
   noko = noko_for(url)
 
-  data = { 
+  data = {
     id: url.to_s[/id=(\d+)$/, 1],
     # name: noko.css('.pagetitle span').first.text,
     name: noko.xpath('//title').text.split(' - ').last,
-    sortname: sortname, 
+    sortname: sortname,
     image: noko.css('.ArticleText2 img/@src').text,
     birth_date: dob_from(noko.css('.ArticleText2')),
     faction: noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text,
@@ -71,4 +71,3 @@ scrape_list(7, 'http://www.sabor.hr/0041') # left mid-way
 
 # scrape_list(6, 'http://www.sabor.hr/Default.aspx?sec=4897')
 # scrape_list(5, 'http://www.sabor.hr/Default.aspx?sec=2487')
-
