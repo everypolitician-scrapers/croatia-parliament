@@ -1,0 +1,39 @@
+---
+request:
+  method: get
+  uri: http://www.sabor.hr/Default.aspx?sec=4767
+  body:
+    encoding: US-ASCII
+    string: ''
+  headers:
+    Accept-Encoding:
+    - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+    Accept:
+    - '*/*'
+    User-Agent:
+    - Ruby
+response:
+  status:
+    code: 200
+    message: OK
+  headers:
+    Cache-Control:
+    - private
+    Content-Length:
+    - '28533'
+    Content-Type:
+    - text/html; charset=utf-8
+    Server:
+    - Microsoft-IIS/7.5
+    X-Aspnet-Version:
+    - 2.0.50727
+    Set-Cookie:
+    - ASP.NET_SessionId=d4nhbaqdm2545ojti4w5ayau; path=/; HttpOnly
+    X-Powered-By:
+    - ASP.NET
+    Date:
+    - Wed, 26 Oct 2016 12:12:49 GMT
+  body:
+    encoding: ASCII-8BIT
+  http_version: 
+recorded_at: Wed, 26 Oct 2016 12:12:47 GMT
