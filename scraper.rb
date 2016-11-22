@@ -69,5 +69,13 @@ scrape_list(8, 'http://www.sabor.hr/concluded-mandates0001') # left mid-way
 scrape_list(7, 'http://www.sabor.hr/members-of-parliament')
 scrape_list(7, 'http://www.sabor.hr/0041') # left mid-way
 
+[
+  [8, 'Mlakar, Davorin', URI('http://www.sabor.hr/lgs.axd?t=24&id=6412')],
+  [8, 'Antičević Marinović, Ingrid', URI('http://www.sabor.hr/lgs.axd?t=24&id=6174')],
+  [8, 'Leko, Josip', URI('http://www.sabor.hr/lgs.axd?t=24&id=6346')]
+].each do |unlisted_mp|
+  scrape_mp(*unlisted_mp)
+end
+
 # scrape_list(6, 'http://www.sabor.hr/Default.aspx?sec=4897')
 # scrape_list(5, 'http://www.sabor.hr/Default.aspx?sec=2487')
