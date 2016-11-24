@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/everypolitician/scraped_page_archive.git
-  revision: 317f10cf3c6abbfb7f1871e80c73b8d8cf07f07a
+  revision: 28f93d74b1c11ef01463ad0e7f874050d2e7fc73
   specs:
-    scraped_page_archive (0.4.1)
+    scraped_page_archive (0.5.0)
       git (~> 1.3.0)
       vcr-archive (~> 0.3.0)
 
@@ -18,7 +18,8 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.4.0)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     coderay (1.1.0)
     colorize (0.7.7)
     crack (0.4.3)
@@ -44,6 +45,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    public_suffix (2.0.4)
     safe_yaml (1.0.4)
     slop (3.6.0)
     sqlite3 (1.3.10)
@@ -76,3 +78,9 @@ DEPENDENCIES
   scraped_page_archive!
   scraperwiki!
   wikidata-client (~> 0.0.7)
+
+RUBY VERSION
+   ruby 2.0.0p648
+
+BUNDLED WITH
+   1.13.6
