@@ -24,10 +24,25 @@ end
 
 def scrape_list(term, url)
   noko = noko_for(url)
+  # We make two passes. First scraping members with links to member pages:
   noko.css('.liste2 .liste a').each do |a|
     link = URI.join url, a.attr('href')
     scrape_mp(term, a.text, link)
   end
+  # Second pass, we scrape mps without member pages:
+  noko.css('.liste2 .liste').each do |item|
+    scrape_no_page_mp(term, item.text.split("\r").first, url) unless item.at_css('a')
+  end
+end
+
+def scrape_no_page_mp(term, sortname, url)
+  # TODO: Capture party info
+  data = {
+    term: term,
+    sortname: sortname,
+    name: sortname.split(',').reverse.join(' ').tidy,
+    source: url.to_s
+  }
 end
 
 def scrape_mp(term, sortname, url)
