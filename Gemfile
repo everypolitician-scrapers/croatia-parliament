@@ -17,3 +17,4 @@ gem "fuzzy_match"
 gem 'wikidata-client', '~> 0.0.7', require: 'wikidata'
 gem 'scraped_page_archive', github: 'everypolitician/scraped_page_archive'
 gem 'scraped', github: 'everypolitician/scraped'
+gem 'require_all'
