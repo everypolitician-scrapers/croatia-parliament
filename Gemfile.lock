@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/everypolitician/scraped.git
+  revision: aabdf259f6cc2f746b50352e078a9141450e8d6e
+  specs:
+    scraped (0.1.0)
+      field_serializer
+      nokogiri
+      require_all
+
+GIT
   remote: https://github.com/everypolitician/scraped_page_archive.git
   revision: 28f93d74b1c11ef01463ad0e7f874050d2e7fc73
   specs:
@@ -30,6 +39,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.10.0)
       faraday (>= 0.7.4, < 0.10)
+    field_serializer (0.2.0)
     fuzzy_match (2.1.0)
     git (1.3.0)
     hashdiff (0.3.0)
@@ -46,6 +56,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     public_suffix (2.0.4)
+    require_all (1.3.3)
     safe_yaml (1.0.4)
     slop (3.6.0)
     sqlite3 (1.3.10)
@@ -75,12 +86,14 @@ DEPENDENCIES
   nokogiri
   open-uri-cached
   pry
+  require_all
+  scraped!
   scraped_page_archive!
   scraperwiki!
   wikidata-client (~> 0.0.7)
 
 RUBY VERSION
-   ruby 2.0.0p648
+   ruby 2.3.1p112
 
 BUNDLED WITH
    1.13.6
