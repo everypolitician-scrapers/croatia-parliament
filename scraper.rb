@@ -7,6 +7,7 @@ require 'colorize'
 require 'pry'
 # require 'open-uri/cached'
 # OpenURI::Cache.cache_path = '.cache'
+require 'scraped'
 require 'require_all'
 
 require_rel 'lib'
