@@ -7,7 +7,9 @@ require 'colorize'
 require 'pry'
 # require 'open-uri/cached'
 # OpenURI::Cache.cache_path = '.cache'
-require 'scraped_page_archive/open-uri'
+require 'require_all'
+
+require_rel 'lib'
 
 class String
   def tidy
