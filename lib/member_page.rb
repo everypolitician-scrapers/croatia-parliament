@@ -30,6 +30,10 @@ class MemberPage < Scraped::HTML
     noko.xpath('//td[b[contains(.,"Deputy club:")]]//a/@href').text[/id=(\d+)/, 1]
   end
 
+  field :faction_url do
+    noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text
+  end
+
   field :party do
     noko.css('td.Stranka').text.tidy
   end
