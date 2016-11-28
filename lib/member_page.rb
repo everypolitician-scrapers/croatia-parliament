@@ -1,5 +1,11 @@
 require 'scraped'
 
+class String
+  def tidy
+    gsub(/[[:space:]]+/, ' ').strip
+  end
+end
+
 class MemberPage < Scraped::HTML
   field :name do
     noko.xpath('//title').text.split(' - ').last
