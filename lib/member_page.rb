@@ -50,6 +50,16 @@ class MemberPage < Scraped::HTML
     noko.xpath('//td[b[contains(.,"Constituency:")]]/text()').text
   end
 
+  field :elected_from_list do
+    noko.xpath('//td[b[contains(.,"Elected from the list of the:")]]//text()')
+        .text
+        .split('-')
+        .last
+        .split(',')
+        .join(';')
+        .tidy
+  end
+
   field :start_date do
     noko.xpath('//td[b[contains(.,"Begin of parliamentary mandate:")]]/text()')
         .text
