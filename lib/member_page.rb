@@ -1,0 +1,78 @@
+require 'scraped'
+
+class String
+  def tidy
+    gsub(/[[:space:]]+/, ' ').strip
+  end
+end
+
+class MemberPage < Scraped::HTML
+  field :name do
+    noko.xpath('//title').text.split(' - ').last
+  end
+
+  field :image do
+    noko.css('.ArticleText2 img/@src').text
+  end
+
+  field :birth_date do
+    Date.parse(noko.css('.ArticleText2')
+                   .text
+                   .tidy[/Born\s+(?:on)\s+(\d+\s+\w+\s+\d+)/, 1])
+                   .to_s rescue ''
+  end
+
+  field :faction do
+    noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text
+  end
+
+  field :faction_id do
+    noko.xpath('//td[b[contains(.,"Deputy club:")]]//a/@href').text[/id=(\d+)/, 1]
+  end
+
+  field :faction_url do
+    noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text
+  end
+
+  field :party do
+    noko.css('td.Stranka').text.tidy
+  end
+
+  field :parliamentary_functions do
+    noko.xpath('//td[b[contains(.,"Parliamentary functions:")]]//a').map(&:text).join(';')
+  end
+
+  field :parliamentary_functions_urls do
+    noko.xpath('//td[b[contains(.,"Parliamentary functions:")]]//a/@href').map(&:text).join(';')
+  end
+
+  field :constituency do
+    noko.xpath('//td[b[contains(.,"Constituency:")]]/text()').text
+  end
+
+  field :elected_from_list do
+    noko.xpath('//td[b[contains(.,"Elected from the list of the:")]]//text()')
+        .text
+        .split('-')
+        .last
+        .split(',')
+        .join(';')
+        .tidy
+  end
+
+  field :start_date do
+    noko.xpath('//td[b[contains(.,"Begin of parliamentary mandate:")]]/text()')
+        .text
+        .split('/')
+        .reverse
+        .join('-')
+  end
+
+  field :end_date do
+    noko.xpath('//td[b[contains(.,"End of parliamentary mandate:")]]/text()')
+        .text
+        .split('/')
+        .reverse
+        .join('-')
+  end
+end
