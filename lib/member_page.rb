@@ -38,6 +38,14 @@ class MemberPage < Scraped::HTML
     noko.css('td.Stranka').text.tidy
   end
 
+  field :parliamentary_functions do
+    noko.xpath('//td[b[contains(.,"Parliamentary functions:")]]//a').map(&:text).join(';')
+  end
+
+  field :parliamentary_functions_urls do
+    noko.xpath('//td[b[contains(.,"Parliamentary functions:")]]//a/@href').map(&:text).join(';')
+  end
+
   field :constituency do
     noko.xpath('//td[b[contains(.,"Constituency:")]]/text()').text
   end
