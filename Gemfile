@@ -13,6 +13,7 @@ gem 'fuzzy_match'
 gem 'nokogiri'
 gem 'open-uri-cached'
 gem 'pry'
+gem 'scraped', github: 'everypolitician/scraped'
 gem 'scraped_page_archive', github: 'everypolitician/scraped_page_archive'
 gem 'scraperwiki', github: 'openaustralia/scraperwiki-ruby',
                    branch: 'morph_defaults'
