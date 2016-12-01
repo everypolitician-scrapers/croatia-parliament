@@ -14,6 +14,6 @@ gem 'nokogiri'
 gem 'open-uri-cached'
 gem 'pry'
 gem 'scraped_page_archive', github: 'everypolitician/scraped_page_archive'
-gem 'scraperwiki', git: 'https://github.com/openaustralia/scraperwiki-ruby.git',
+gem 'scraperwiki', github: 'openaustralia/scraperwiki-ruby',
                    branch: 'morph_defaults'
 gem 'wikidata-client', '~> 0.0.7', require: 'wikidata'
