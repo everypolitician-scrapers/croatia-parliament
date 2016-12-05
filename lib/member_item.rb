@@ -12,6 +12,10 @@ class MemberItem < Scraped::HTML
   field :sort_name do
     split_row_text[0]
   end
+
+  field :source do
+    url
+  end
   
   private
 
