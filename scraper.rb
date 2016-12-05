@@ -27,7 +27,7 @@ def scrape_list(term, url)
            member_page.to_h.merge(term: term)
          end
                     .each do |member_data|
-    ScraperWiki.save_sqlite([:id, :term], member_data)
+    ScraperWiki.save_sqlite([:name, :term], member_data)
   end
 end
 
