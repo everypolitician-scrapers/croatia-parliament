@@ -26,9 +26,12 @@ end
 
 def scrape_list(term, url)
   MembersPage.new(response: Scraped::Request.new(url: url).response(decorators: [AbsoluteLinks]))
-             .members
-             .each do |member_page|
-    ScraperWiki.save_sqlite([:id, :term], member_page.to_h.merge(term: term))
+             .member_urls
+             .each do |url|
+    data = MemberPage.new(response: Scraped::Request.new(url: url).response)
+                     .to_h
+                     .merge(term: term)
+    ScraperWiki.save_sqlite([:id, :term], data)
   end
 end
 

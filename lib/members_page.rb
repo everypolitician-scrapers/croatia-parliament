@@ -2,9 +2,9 @@
 require 'scraped'
 
 class MembersPage < Scraped::HTML
-  field :members do
+  field :member_urls do
     noko.css('.liste2 .liste a').map do |a|
-      MemberPage.new(response: Scraped::Request.new(url: a.attr('href')).response)
+      a.attr('href')
     end
   end
 end
