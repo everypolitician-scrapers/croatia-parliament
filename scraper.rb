@@ -3,8 +3,8 @@
 
 require 'scraperwiki'
 require 'nokogiri'
-require 'colorize'
 require 'pry'
+
 # require 'open-uri/cached'
 # OpenURI::Cache.cache_path = '.cache'
 require 'scraped_page_archive/open-uri'
@@ -55,7 +55,7 @@ def scrape_mp(term, sortname, url)
 
   if data[:faction].to_s.empty?
     data[:faction] = "Independent"
-    warn "No faction in #{data[:source]}: setting to #{data[:faction]}".red
+    warn "No faction in #{data[:source]}: setting to #{data[:faction]}"
   end
   ScraperWiki.save_sqlite([:id, :term], data)
 end
