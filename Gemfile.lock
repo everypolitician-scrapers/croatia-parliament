@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/everypolitician/scraped.git
-  revision: 44f8c0baa3e1c6860fed85d3f0f8e24f7c417b16
+  revision: 0b7474c54ee395fd9bec30a64702255d093f9b31
   specs:
     scraped (0.1.0)
       field_serializer (>= 0.3.0)
@@ -46,7 +46,7 @@ GEM
       minispec-metadata (~> 2.0)
       minitest (>= 4.7.5)
       vcr (>= 2.9)
-    nokogiri (1.6.8.1)
+    nokogiri (1.7.0)
       mini_portile2 (~> 2.1.0)
     open-uri-cached (0.0.5)
     parser (2.3.3.1)
