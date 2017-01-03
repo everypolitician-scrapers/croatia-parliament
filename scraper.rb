@@ -2,7 +2,6 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-require 'nokogiri'
 require 'pry'
 require 'require_all'
 require 'scraped'
@@ -18,10 +17,6 @@ class String
   def tidy
     gsub(/[[:space:]]+/, ' ').strip
   end
-end
-
-def noko_for(url)
-  Nokogiri::HTML(open(url).read)
 end
 
 def scrape_list(term, url)
