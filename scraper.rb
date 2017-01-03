@@ -19,14 +19,15 @@ class String
   end
 end
 
+def scrape(h)
+  url, klass = h.to_a.first
+  klass.new(response: Scraped::Request.new(url: url).response)
+end
+
 def scrape_list(term, url)
-  MembersPage.new(response: Scraped::Request.new(url: url).response)
-             .member_urls
-             .each do |url|
-    data = MemberPage.new(response: Scraped::Request.new(url: url).response)
-                     .to_h
-                     .merge(term: term)
-    ScraperWiki.save_sqlite([:id, :term], data)
+  scrape(url => MembersPage).member_urls.each do |mem_url|
+    data = scrape(mem_url => MemberPage).to_h.merge(term: term)
+    ScraperWiki.save_sqlite(%i(id term), data)
   end
 end
 
