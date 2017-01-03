@@ -15,7 +15,9 @@ class MemberPage < Scraped::HTML
   end
 
   field :birth_date do
-    dob_from(noko.css('.ArticleText2'))
+    date = noko.css('.ArticleText2').text.tidy
+    return '' if date.to_s.empty?
+    Date.parse(date[/Born\s+(?:on)\s+(\d+\s+\w+\s+\d+)/, 1]).to_s rescue ''
   end
 
   field :faction do
@@ -47,10 +49,4 @@ class MemberPage < Scraped::HTML
   end
 
   # TODO: Changes, e.g. http://www.sabor.hr/Default.aspx?sec=5358
-
-  private
-
-  def dob_from(node)
-    Date.parse(node.text.tidy[/Born\s+(?:on)\s+(\d+\s+\w+\s+\d+)/, 1]).to_s rescue ''
-  end
 end
