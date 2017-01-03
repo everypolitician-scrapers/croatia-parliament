@@ -21,7 +21,9 @@ class MemberPage < Scraped::HTML
   end
 
   field :faction do
-    noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text
+    faction = noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text
+    return 'Independent' if faction.to_s.empty?
+    faction
   end
 
   field :faction_id do
