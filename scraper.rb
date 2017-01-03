@@ -20,7 +20,7 @@ class String
 end
 
 def scrape_list(term, url)
-  MembersPage.new(response: Scraped::Request.new(url: url).response(decorators: [AbsoluteLinks]))
+  MembersPage.new(response: Scraped::Request.new(url: url).response)
              .member_urls
              .each do |url|
     data = MemberPage.new(response: Scraped::Request.new(url: url).response)
