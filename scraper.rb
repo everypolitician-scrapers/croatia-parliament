@@ -13,12 +13,6 @@ require 'scraped_page_archive/open-uri'
 
 require_rel 'lib'
 
-class String
-  def tidy
-    gsub(/[[:space:]]+/, ' ').strip
-  end
-end
-
 def scrape(h)
   url, klass = h.to_a.first
   klass.new(response: Scraped::Request.new(url: url).response)
