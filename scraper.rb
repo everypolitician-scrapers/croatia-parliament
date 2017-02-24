@@ -19,9 +19,14 @@ def scrape(h)
 end
 
 def scrape_list(term, url)
-  scrape(url => MembersPage).member_urls.each do |mem_url|
-    data = scrape(mem_url => MemberPage).to_h.merge(term: term)
-    ScraperWiki.save_sqlite(%i(id term), data)
+  scrape(url => MembersPage).member_rows.each do |mem_row|
+    data = {
+      source:    url, # overwritten by MemberPage#source if member has individual page
+      sort_name: mem_row.sort_name,
+      term:      term,
+    }
+    data.merge!(scrape(mem_row.url => MemberPage).to_h) if mem_row.url
+    ScraperWiki.save_sqlite(%i(sort_name term), data)
   end
 end
 
