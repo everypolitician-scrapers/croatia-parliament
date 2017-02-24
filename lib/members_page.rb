@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 require 'scraped'
+require_relative 'member_row'
 
 class MembersPage < Scraped::HTML
   decorator Scraped::Response::Decorator::AbsoluteUrls
 
-  field :member_urls do
-    noko.css('.liste2 .liste a').map do |a|
-      a.attr('href')
+  field :member_rows do
+    noko.css('.liste2 .liste').map do |item|
+      fragment item => MemberRow
     end
   end
 end
