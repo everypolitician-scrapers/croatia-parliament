@@ -7,11 +7,11 @@ class MemberPage < Scraped::HTML
   end
 
   field :name do
-    noko.xpath('//title').text.split(' - ').last
+    noko.xpath('//title').text.split(' - ').last.tidy
   end
 
   field :image do
-    noko.css('.ArticleText2 img/@src').text
+    noko.css('.ArticleText2 img/@src').text.tidy
   end
 
   field :birth_date do
@@ -21,13 +21,13 @@ class MemberPage < Scraped::HTML
   end
 
   field :faction do
-    faction = noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text
+    faction = noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text.tidy
     return 'Independent' if faction.to_s.empty?
     faction
   end
 
   field :faction_id do
-    noko.xpath('//td[b[contains(.,"Deputy club:")]]//a/@href').text[/id=(\d+)/, 1]
+    noko.xpath('//td[b[contains(.,"Deputy club:")]]//a/@href').text[/id=(\d+)/, 1].tidy
   end
 
   field :party do
@@ -35,19 +35,19 @@ class MemberPage < Scraped::HTML
   end
 
   field :constituency do
-    noko.xpath('//td[b[contains(.,"Constituency:")]]/text()').text
+    noko.xpath('//td[b[contains(.,"Constituency:")]]/text()').text.tidy
   end
 
   field :start_date do
-    noko.xpath('//td[b[contains(.,"Begin of parliamentary mandate:")]]/text()').text.split('/').reverse.join('-')
+    noko.xpath('//td[b[contains(.,"Begin of parliamentary mandate:")]]/text()').text.split('/').reverse.map(&:tidy).join('-')
   end
 
   field :end_date do
-    noko.xpath('//td[b[contains(.,"End of parliamentary mandate:")]]/text()').text.split('/').reverse.join('-')
+    noko.xpath('//td[b[contains(.,"End of parliamentary mandate:")]]/text()').text.split('/').reverse.map(&:tidy).join('-')
   end
 
   field :source do
-    url.to_s
+    url.to_s.tidy
   end
 
   # TODO: Changes, e.g. http://www.sabor.hr/Default.aspx?sec=5358
