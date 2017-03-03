@@ -5,4 +5,4 @@ RuboCop::RakeTask.new
 require 'scraper_test'
 ScraperTest::RakeTask.new.install_tasks
 
-task default: %w(test rubocop)
+task default: %w(rubocop test)
