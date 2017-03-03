@@ -2,6 +2,8 @@
 require 'scraped'
 
 class MemberPage < Scraped::HTML
+  decorator Scraped::Response::Decorator::AbsoluteUrls
+
   field :id do
     url.to_s[/id=(\d+)$/, 1]
   end
@@ -35,15 +37,15 @@ class MemberPage < Scraped::HTML
   end
 
   field :constituency do
-    noko.xpath('//td[b[contains(.,"Constituency:")]]/text()').text
+    noko.xpath('//td[b[contains(.,"Constituency:")]]/text()').text.tidy
   end
 
   field :start_date do
-    noko.xpath('//td[b[contains(.,"Begin of parliamentary mandate:")]]/text()').text.split('/').reverse.join('-')
+    noko.xpath('//td[b[contains(.,"Begin of parliamentary mandate:")]]/text()').text.split('/').reverse.map(&:tidy).join('-')
   end
 
   field :end_date do
-    noko.xpath('//td[b[contains(.,"End of parliamentary mandate:")]]/text()').text.split('/').reverse.join('-')
+    noko.xpath('//td[b[contains(.,"End of parliamentary mandate:")]]/text()').text.split('/').reverse.map(&:tidy).join('-')
   end
 
   field :source do
