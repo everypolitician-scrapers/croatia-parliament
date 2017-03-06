@@ -16,4 +16,15 @@ describe MembersPage do
       }.must_equal response.member_rows.first.to_h
     end
   end
+
+  describe 'Member row of member without individual page' do
+    let(:url) { 'http://www.sabor.hr/concluded-mandates' }
+
+    it 'should contain the expected data' do
+      {
+        url:       nil,
+        sort_name: 'Baričević, Martin',
+      }.must_equal response.member_rows[1].to_h
+    end
+  end
 end
