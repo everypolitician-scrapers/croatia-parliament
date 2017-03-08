@@ -38,4 +38,15 @@ describe MembersPage do
       }.must_equal response.member_rows[3].to_h
     end
   end
+
+  describe 'Member row which has no URL for member but does have a URL for the substitute' do
+    let(:url) { 'http://www.sabor.hr/0041' }
+
+    it 'should contain the expected data' do
+      {
+        url:       nil,
+        sort_name: 'Jakovčić, Ivan',
+      }.must_equal response.member_rows[9].to_h
+    end
+  end
 end
