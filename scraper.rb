@@ -25,6 +25,7 @@ def scrape_list(term, url)
   end
 end
 
+ScraperWiki.sqliteexecute('DROP TABLE data') rescue nil
 scrape_list(9, 'http://www.sabor.hr/Default.aspx?sec=4608')
 scrape_list(9, 'http://www.sabor.hr/concluded-mandates') # left mid-way
 
