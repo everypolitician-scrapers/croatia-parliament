@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'minitest/around/spec'
 require 'minitest/autorun'
 require 'pry'
