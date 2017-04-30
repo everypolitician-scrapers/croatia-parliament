@@ -21,6 +21,7 @@ end
 def scrape_list(term, url)
   scrape(url => MembersPage).member_urls.each do |mem_url|
     data = scrape(mem_url => MemberPage).to_h.merge(term: term)
+    puts data.reject { |_, v| v.to_s.empty? }.sort_by { |k, _| k }.to_h if ENV['MORPH_DEBUG']
     ScraperWiki.save_sqlite(%i[id term], data)
   end
 end
