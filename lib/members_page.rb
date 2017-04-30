@@ -2,7 +2,7 @@
 require 'scraped'
 
 class MembersPage < Scraped::HTML
-  decorator Scraped::Response::Decorator::AbsoluteUrls
+  decorator Scraped::Response::Decorator::CleanUrls
 
   field :member_urls do
     noko.css('.liste2 .liste a').map do |a|

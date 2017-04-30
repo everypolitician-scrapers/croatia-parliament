@@ -2,7 +2,7 @@
 require 'scraped'
 
 class MemberPage < Scraped::HTML
-  decorator Scraped::Response::Decorator::AbsoluteUrls
+  decorator Scraped::Response::Decorator::CleanUrls
 
   field :id do
     url.to_s[/id=(\d+)$/, 1]
