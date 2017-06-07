@@ -6,9 +6,9 @@ require_relative 'seat_row'
 class MembersPage < Scraped::HTML
   decorator Scraped::Response::Decorator::CleanUrls
 
-  field :member_urls do
+  field :seat_rows do
     noko.css('.liste2 .liste').map do |row|
-      (fragment row => SeatRow).member_url
+      (fragment row => SeatRow).to_h
     end
   end
 end

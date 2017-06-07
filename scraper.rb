@@ -19,9 +19,10 @@ def scrape(h)
 end
 
 def scrape_list(term, url)
-  scrape(url => MembersPage).member_urls.each do |mem_url|
-    next if mem_url.empty?
-    data = scrape(mem_url => MemberPage).to_h.merge(term: term)
+  scrape(url => MembersPage).seat_rows.each do |seat_row|
+    url = seat_row[:primary_member_url]
+    next if url.empty?
+    data = scrape(url => MemberPage).to_h.merge(term: term)
     puts data.reject { |_, v| v.to_s.empty? }.sort_by { |k, _| k }.to_h if ENV['MORPH_DEBUG']
     ScraperWiki.save_sqlite(%i[id term], data)
   end
