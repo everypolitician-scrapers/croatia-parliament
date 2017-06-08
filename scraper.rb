@@ -18,7 +18,7 @@ def scrape(h)
   klass.new(response: Scraped::Request.new(url: url).response)
 end
 
-def scrape_list(term, url)
+def member_data(term, url)
   scrape(url => MembersPage).member_urls.map do |mem_url|
     data = scrape(mem_url => MemberPage).to_h.merge(term: term)
     puts data.reject { |_, v| v.to_s.empty? }.sort_by { |k, _| k }.to_h if ENV['MORPH_DEBUG']
@@ -38,6 +38,6 @@ member_lists = [
   # { term: 5, url: 'http://www.sabor.hr/Default.aspx?sec=2487' }
 ]
 
-data = member_lists.flat_map { |list| scrape_list(list[:term], list[:url]) }
+data = member_lists.flat_map { |list| member_data(list[:term], list[:url]) }
 ScraperWiki.sqliteexecute('DROP TABLE data') rescue nil
 ScraperWiki.save_sqlite(%i[id term], data)
