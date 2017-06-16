@@ -20,7 +20,7 @@ response:
     Cache-Control:
     - private
     Content-Length:
-    - '27813'
+    - '27555'
     Content-Type:
     - text/html; charset=utf-8
     Server:
@@ -28,12 +28,12 @@ response:
     X-Aspnet-Version:
     - 2.0.50727
     Set-Cookie:
-    - ASP.NET_SessionId=4p3zfteu4gez5d453x305t55; path=/; HttpOnly
+    - ASP.NET_SessionId=owtzvdbqc3wvnn45jnu2vtil; path=/; HttpOnly
     X-Powered-By:
     - ASP.NET
     Date:
-    - Thu, 15 Jun 2017 19:10:54 GMT
+    - Fri, 16 Jun 2017 13:45:39 GMT
   body:
     encoding: ASCII-8BIT
   http_version: 
-recorded_at: Thu, 15 Jun 2017 19:10:17 GMT
+recorded_at: Fri, 16 Jun 2017 13:45:35 GMT
