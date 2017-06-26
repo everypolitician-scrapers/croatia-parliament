@@ -18,7 +18,7 @@ def scrape(h)
   klass.new(response: Scraped::Request.new(url: url).response)
 end
 
-def scrape_list(url)
+def member_data(url)
   scrape(url => MembersPage).member_urls.map do |mem_url|
     scrape(mem_url => MemberPage).to_h
   end
@@ -37,7 +37,7 @@ member_lists = [
 ]
 
 data = member_lists.flat_map do |list|
-  scrape_list(list[:url]).map { |mem| mem.merge(term: list[:term]) }
+  member_data(list[:url]).map { |mem| mem.merge(term: list[:term]) }
 end
 
 data.each { |mem| puts mem.reject { |_, v| v.to_s.empty? }.sort_by { |k, _| k }.to_h } if ENV['MORPH_DEBUG']
