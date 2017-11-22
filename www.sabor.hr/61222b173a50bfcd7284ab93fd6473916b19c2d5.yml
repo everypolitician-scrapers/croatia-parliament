@@ -14,26 +14,26 @@ request:
     - Ruby
 response:
   status:
-    code: 200
-    message: OK
+    code: 302
+    message: Found
   headers:
     Cache-Control:
     - private
     Content-Length:
-    - '27861'
+    - '163'
     Content-Type:
     - text/html; charset=utf-8
+    Location:
+    - "/error.htm?aspxerrorpath=/Default.aspx"
     Server:
     - Microsoft-IIS/7.5
     X-Aspnet-Version:
     - 2.0.50727
-    Set-Cookie:
-    - ASP.NET_SessionId=giuaxgns4wlidhmvy4rv5rui; path=/; HttpOnly
     X-Powered-By:
     - ASP.NET
     Date:
-    - Fri, 17 Nov 2017 11:33:20 GMT
+    - Wed, 22 Nov 2017 10:20:58 GMT
   body:
-    encoding: ASCII-8BIT
+    encoding: UTF-8
   http_version: 
-recorded_at: Fri, 17 Nov 2017 11:32:51 GMT
+recorded_at: Wed, 22 Nov 2017 10:20:36 GMT
