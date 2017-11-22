@@ -1,0 +1,39 @@
+---
+request:
+  method: get
+  uri: http://www.sabor.hr/error.htm?aspxerrorpath=/Default.aspx
+  body:
+    encoding: US-ASCII
+    string: ''
+  headers:
+    Accept-Encoding:
+    - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+    Accept:
+    - "*/*"
+    User-Agent:
+    - Ruby
+response:
+  status:
+    code: 200
+    message: OK
+  headers:
+    Content-Type:
+    - text/html
+    Last-Modified:
+    - Mon, 11 Oct 2010 07:22:40 GMT
+    Accept-Ranges:
+    - bytes
+    Etag:
+    - '"0a053161569cb1:0"'
+    Server:
+    - Microsoft-IIS/7.5
+    X-Powered-By:
+    - ASP.NET
+    Date:
+    - Wed, 22 Nov 2017 10:21:01 GMT
+    Content-Length:
+    - '924'
+  body:
+    encoding: UTF-8
+  http_version: 
+recorded_at: Wed, 22 Nov 2017 10:20:40 GMT
