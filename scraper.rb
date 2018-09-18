@@ -7,9 +7,8 @@ require 'require_all'
 require 'scraped'
 require 'scraperwiki'
 
-# require 'open-uri/cached'
-# OpenURI::Cache.cache_path = '.cache'
-require 'scraped_page_archive/open-uri'
+require 'open-uri/cached'
+OpenURI::Cache.cache_path = '.cache'
 
 require_rel 'lib'
 
