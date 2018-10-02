@@ -20,12 +20,14 @@ class MemberPage < Scraped::HTML
   field :birth_date do
     date = noko.css('.ArticleText2').text.tidy
     return '' if date.to_s.empty?
+
     Date.parse(date[/Born\s+(?:on)\s+(\d+\s+\w+\s+\d+)/, 1]).to_s rescue ''
   end
 
   field :faction do
     faction = noko.xpath('//td[b[contains(.,"Deputy club:")]]//a').text
     return 'Independent' if faction.to_s.empty?
+
     faction
   end
 
