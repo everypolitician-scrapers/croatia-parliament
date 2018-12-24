@@ -1,0 +1,58 @@
+---
+request:
+  method: get
+  uri: http://www.sabor.hr/?sec=4608
+  body:
+    encoding: US-ASCII
+    string: ''
+  headers:
+    Accept-Encoding:
+    - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+    Accept:
+    - "*/*"
+    User-Agent:
+    - Ruby
+response:
+  status:
+    code: 200
+    message: OK
+  headers:
+    Date:
+    - Mon, 24 Dec 2018 15:47:45 GMT
+    Server:
+    - Apache
+    Cache-Control:
+    - max-age=4838400, public
+    - must-revalidate, no-cache, private
+    X-Drupal-Dynamic-Cache:
+    - MISS
+    Link:
+    - <http://www.sabor.hr/hr>; rel="canonical", <http://www.sabor.hr/hr>; rel="shortlink",
+      <http://www.sabor.hr/hr/pocetna>; rel="alternate"; hreflang="hr", <http://www.sabor.hr/en/home>;
+      rel="alternate"; hreflang="en", </hr/pocetna>; rel="revision"
+    X-Ua-Compatible:
+    - IE=edge
+    Content-Language:
+    - hr
+    X-Content-Type-Options:
+    - nosniff
+    X-Frame-Options:
+    - SAMEORIGIN
+    Expires:
+    - Sun, 19 Nov 1978 05:00:00 GMT
+    Vary:
+    - Accept-Encoding
+    X-Generator:
+    - Drupal 8 (https://www.drupal.org)
+    X-Drupal-Cache:
+    - HIT
+    Content-Length:
+    - '12618'
+    Connection:
+    - close
+    Content-Type:
+    - text/html; charset=UTF-8
+  body:
+    encoding: ASCII-8BIT
+  http_version: 
+recorded_at: Mon, 24 Dec 2018 16:47:03 GMT
