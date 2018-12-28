@@ -18,7 +18,7 @@ response:
     message: OK
   headers:
     Date:
-    - Thu, 27 Dec 2018 04:12:02 GMT
+    - Thu, 27 Dec 2018 22:38:39 GMT
     Server:
     - Apache
     Cache-Control:
@@ -45,9 +45,9 @@ response:
     X-Generator:
     - Drupal 8 (https://www.drupal.org)
     X-Drupal-Cache:
-    - MISS
+    - HIT
     Content-Length:
-    - '12613'
+    - '12615'
     Connection:
     - close
     Content-Type:
@@ -55,4 +55,4 @@ response:
   body:
     encoding: ASCII-8BIT
   http_version: 
-recorded_at: Thu, 27 Dec 2018 04:12:02 GMT
+recorded_at: Fri, 28 Dec 2018 00:20:07 GMT
