@@ -18,7 +18,7 @@ response:
     message: OK
   headers:
     Date:
-    - Wed, 30 Jan 2019 10:11:43 GMT
+    - Thu, 31 Jan 2019 17:18:02 GMT
     Server:
     - Apache
     Cache-Control:
@@ -47,7 +47,7 @@ response:
     X-Drupal-Cache:
     - MISS
     Content-Length:
-    - '13385'
+    - '13197'
     Connection:
     - close
     Content-Type:
@@ -55,4 +55,4 @@ response:
   body:
     encoding: ASCII-8BIT
   http_version: 
-recorded_at: Wed, 30 Jan 2019 10:11:43 GMT
+recorded_at: Thu, 31 Jan 2019 17:18:02 GMT
