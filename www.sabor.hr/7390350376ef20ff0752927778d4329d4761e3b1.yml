@@ -18,7 +18,7 @@ response:
     message: Found
   headers:
     Date:
-    - Fri, 08 Feb 2019 21:18:57 GMT
+    - Sat, 09 Feb 2019 13:00:24 GMT
     Server:
     - Apache
     X-Content-Type-Options:
@@ -28,7 +28,7 @@ response:
     Cache-Control:
     - max-age=1209600
     Expires:
-    - Fri, 22 Feb 2019 21:18:57 GMT
+    - Sat, 23 Feb 2019 13:00:24 GMT
     Content-Length:
     - '213'
     Connection:
@@ -38,4 +38,4 @@ response:
   body:
     encoding: UTF-8
   http_version: 
-recorded_at: Fri, 08 Feb 2019 21:18:57 GMT
+recorded_at: Sat, 09 Feb 2019 13:00:24 GMT
