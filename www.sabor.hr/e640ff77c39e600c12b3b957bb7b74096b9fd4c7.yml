@@ -18,14 +18,14 @@ response:
     message: OK
   headers:
     Date:
-    - Thu, 14 Feb 2019 16:36:19 GMT
+    - Fri, 15 Feb 2019 14:32:14 GMT
     Server:
     - Apache
     Cache-Control:
     - max-age=4838400, public
     - must-revalidate, no-cache, private
     X-Drupal-Dynamic-Cache:
-    - MISS
+    - HIT
     Link:
     - <http://www.sabor.hr/hr>; rel="canonical", <http://www.sabor.hr/hr>; rel="shortlink",
       <http://www.sabor.hr/hr/pocetna>; rel="alternate"; hreflang="hr", <http://www.sabor.hr/en/home>;
@@ -45,9 +45,9 @@ response:
     X-Generator:
     - Drupal 8 (https://www.drupal.org)
     X-Drupal-Cache:
-    - HIT
+    - MISS
     Content-Length:
-    - '13208'
+    - '13083'
     Connection:
     - close
     Content-Type:
@@ -55,4 +55,4 @@ response:
   body:
     encoding: ASCII-8BIT
   http_version: 
-recorded_at: Thu, 14 Feb 2019 17:46:00 GMT
+recorded_at: Fri, 15 Feb 2019 16:54:43 GMT
